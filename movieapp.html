@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id = "formhold">
-        <form><label for "movie">Movie: </label><input type ="text" id="movie"></br>
-        <label for "rating">Rating: </label><input type = "text" id="rating"></br>
-    <input type = "submit"></form>
-    </div>
-    <div id = "movies"></div>
-<ol></ol>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script>
-        $(document).ready( () =>{
-           let uniqueId = 0
-           const form = $("#formhold form")
-           const list = $("ol")
-           form.submit((evt) =>{
-            evt.preventDefault()
-            console.log(evt.target)
-            const movie = $("#movie").val()
-            const rating = $("#rating").val()
-            const listItem = `<li class = "${uniqueId}">Movie: ${movie} Rating: ${rating}</li>` 
-            list.append(listItem)
-            const removeButton = `<button id = ${uniqueId} class = "rb">remove</button>`
-            $("li:last-child").append(removeButton)
-            $(".rb").on("click", (event) =>{
-              console.log(event.target)
-              event.target.parentNode.remove()
-            })
-            uniqueId++
-           })
-           //I don't think I even needed to append a unique id and class to all of those divs but if I remove the code for it now I'm almost certain everything will come tumbling down like the house of cards this mess is.
 
-           //'I will refactor this later' and other common misconceptions about software engineering
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="formhold">
+    <form><label for "movie">Movie: </label><input type="text" id="movie"></br>
+      <label for "rating">Rating: </label><input type="text" id="rating"></br>
+      <input type="submit">
+    </form>
+  </div>
+  <div id="movies"></div>
+  <ol></ol>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script>
+    $(document).ready(() => {
+      let uniqueId = 0
+      const form = $("#formhold form")
+      const list = $("ol")
+      form.submit((evt) => {
+        evt.preventDefault()
+        const movie = $("#movie").val()
+        const rating = $("#rating").val()
+        const listItem = `<li class = "${uniqueId}">Movie: ${movie} Rating: ${rating}</li>`
+        list.append(listItem)
+        const removeButton = `<button id = ${uniqueId} class = "rb">remove</button>`
+        $("li:last-child").append(removeButton)
+        $(".rb").on("click", (event) => {
+          event.target.parentNode.remove()
         })
-    </script>
-  </body>
+        uniqueId++
+      })
+      //I don't think I even needed to append a unique id and class to all of those divs but if I remove the code for it now I'm almost certain everything will come tumbling down like the house of cards this mess is.
+
+      //'I will refactor this later' and other common misconceptions about software engineering
+    })
+  </script>
+</body>
+
 </html>
